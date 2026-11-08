@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FinClass — Classroom Aquarium</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+:root{--teal:#147d78;--deep:#153e43;--muted:#71858a;--bg:#f4f8f6;--line:#e5eeea;--mint:#e6f4ee}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--deep);font-family:'DM Sans',sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.shell{max-width:1180px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:24px}.brand{font:800 22px Manrope;display:flex;align-items:center;gap:10px}.logo{width:39px;height:39px;border-radius:13px;background:var(--teal);display:grid;place-items:center;color:white}.top-right{display:flex;align-items:center;gap:10px}.muted{color:var(--muted)}.btn{background:var(--teal);color:white;border-radius:10px;padding:10px 14px;font-size:12px;font-weight:700}.btn.alt{background:#edf5f1;color:var(--teal)}.btn.danger{background:#fff0ed;color:#b34b3a}.btn:disabled{opacity:.5;cursor:not-allowed}.hidden{display:none!important}.heading{margin:15px 0 20px}.eyebrow{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);font-weight:800}.heading h1{font:800 29px Manrope;margin:6px 0}.heading p{font-size:13px;color:var(--muted);margin:0;line-height:1.6}.card{background:white;border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:0 10px 30px #173a3208}.card h3{font:800 15px Manrope;margin:0 0 13px}.login{max-width:440px;margin:7vh auto}.login .card{padding:26px}.login h1{font:800 25px Manrope;margin:8px 0}.field{display:grid;gap:5px;margin:11px 0}.field label{font-size:10px;font-weight:700;color:#63777a}.field input,.field select,.field textarea{border:1px solid var(--line);border-radius:9px;padding:11px;background:white;width:100%;font-size:12px;outline:none}.field textarea{min-height:75px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--teal)}.notice{font-size:11px;line-height:1.6;color:var(--muted);background:#f5f8f6;padding:12px;border-radius:10px}.error{font-size:12px;color:#b34b3a;min-height:17px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}.stat{background:white;border:1px solid var(--line);border-radius:16px;padding:16px}.stat small{color:var(--muted);font-size:11px}.stat strong{display:block;font:800 25px Manrope;margin:7px 0 1px}.columns{display:grid;grid-template-columns:1.1fr .9fr;gap:15px}.student-meta{display:flex;justify-content:space-between;gap:10px;align-items:center}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:510px}th,td{text-align:left;padding:11px 8px;border-bottom:1px solid #eff3f0;font-size:12px}th{font-size:10px;color:#92a19e;text-transform:uppercase;letter-spacing:.6px}.student{display:flex;gap:8px;align-items:center;font-weight:700}.avatar{width:31px;height:31px;border-radius:50%;background:#fbe8d8;display:grid;place-items:center}.tag{font-size:10px;font-weight:700;color:var(--teal);background:#eaf5f0;padding:5px 8px;border-radius:20px;white-space:nowrap}.empty{padding:20px;background:#f7faf8;border-radius:12px;text-align:center;color:var(--muted);font-size:12px}.update{border-bottom:1px solid #eff3f0;padding:11px 0}.update:last-child{border:0}.update b{font-size:12px}.update p{font-size:11px;color:var(--muted);line-height:1.5;margin:5px 0}.update small{font-size:10px;color:#9aa9a6}.bar{height:8px;background:#edf2ef;border-radius:20px;overflow:hidden;margin-top:7px}.bar span{height:100%;display:block;background:linear-gradient(90deg,#65c5a6,#147d78);transition:width .35s}.progress-label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}.feed,.aquarium-hero{background:linear-gradient(135deg,#e4f5ed,#d8f0ee);border-radius:18px;padding:20px;overflow:hidden}.fish-stage{height:205px;background:linear-gradient(180deg,#bfe9e7 0%,#a1dcd7 65%,#78c5bd 100%);border:6px solid #eff9f4;border-radius:16px;position:relative;overflow:hidden;margin:13px 0}.fish-stage:before,.class-tank:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 15% 25%,#fff9 0 2px,transparent 3px),radial-gradient(circle at 78% 35%,#fff8 0 3px,transparent 4px),radial-gradient(circle at 54% 18%,#fff8 0 2px,transparent 3px);background-size:90px 80px;opacity:.8}.seaweed{position:absolute;bottom:-4px;font-size:39px;z-index:1}.seaweed.left{left:8px}.seaweed.right{right:12px}.sand,.tank-sand{position:absolute;bottom:0;left:0;right:0;height:17px;background:#d8d1a7;opacity:.8}.solo-fish{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:140px;height:100px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 7px 4px #285b5525);animation:floaty 3.5s ease-in-out infinite;z-index:2}@keyframes floaty{50%{transform:translate(calc(-50% + 8px),calc(-50% - 7px))}}.student-tabs{display:flex;gap:8px;margin:0 0 14px;flex-wrap:wrap}.student-tabs button{background:white;border:1px solid var(--line);padding:9px 13px;border-radius:20px;font-size:11px;font-weight:700;color:var(--muted)}.student-tabs button.active{background:var(--teal);color:white;border-color:var(--teal)}.pane{display:none}.pane.active{display:block}.class-tank{height:330px;position:relative;overflow:hidden;border:8px solid #eff9f4;border-radius:20px;background:linear-gradient(180deg,#bce9e9 0%,#9bd9d6 70%,#6fbdb6 100%);box-shadow:inset 0 0 25px #317c7330}.tank-plant{position:absolute;bottom:9px;font-size:46px;z-index:1}.tank-plant.p1{left:12px}.tank-plant.p2{right:16px}.tank-rock{position:absolute;bottom:12px;left:43%;font-size:29px;z-index:1}.swimmer{position:absolute;z-index:2;display:flex;flex-direction:column;align-items:center;gap:0;animation:swim 6s ease-in-out infinite alternate;cursor:pointer;background:transparent;padding:4px;border-radius:12px}.swimmer:hover{background:#ffffff55}.swimmer .fish-svg-wrapper{width:60px;height:45px;display:grid;place-items:center}.swimmer .name{font-size:9px;font-weight:800;color:#14525a;background:#ffffffd9;border-radius:20px;padding:3px 7px;white-space:nowrap;max-width:105px;overflow:hidden;text-overflow:ellipsis}.swimmer .level{font-size:8px;color:#1b6567;font-weight:700}@keyframes swim{0%{translate:-7px 0}50%{translate:10px -8px}100%{translate:20px 4px}}.swimmer:nth-of-type(2n){animation-duration:7.5s;animation-direction:alternate-reverse}.swimmer:nth-of-type(3n){animation-duration:5.5s}.fish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px;margin-top:13px}.fish-card{background:white;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;cursor:pointer}.fish-card .fish-svg-wrapper{width:65px;height:50px;margin:0 auto 4px}.fish-card b{display:block;font-size:11px;margin:5px 0}.fish-card small{font-size:10px;color:var(--muted)}.modalbg{display:none;position:fixed;inset:0;background:#102d2c77;z-index:5;place-items:center;padding:18px}.modalbg.show{display:grid}.modal{background:white;border-radius:18px;padding:22px;width:min(450px,100%);max-height:90vh;overflow:auto}.modal h2{font:800 19px Manrope;margin:0}.modal p{font-size:11px;color:var(--muted)}.modalfoot{display:flex;justify-content:flex-end;gap:8px;margin-top:15px}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,15px);opacity:0;background:#183d3a;color:white;padding:11px 16px;border-radius:10px;font-size:12px;transition:.25s;z-index:9;max-width:90vw}.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ANIMATED SVG FISH EVOLUTION CSS RULES */
+.custom-fish-svg { width: 100%; height: 100%; overflow: visible; }
+.custom-fish-svg .fin-left { transform-origin: 45px 30px; animation: wagFin 1.4s ease-in-out infinite alternate; }
+.custom-fish-svg .tail { transform-origin: 65px 30px; animation: wagTail 0.8s ease-in-out infinite alternate; }
+.custom-fish-svg .glow { animation: pulseGlow 2s ease-in-out infinite alternate; }
+
+@keyframes wagTail { 0% { transform: rotate(-10deg); } 100% { transform: rotate(10deg); } }
+@keyframes wagFin { 0% { transform: rotate(-8deg); } 100% { transform: rotate(12deg); } }
+@keyframes pulseGlow { 0% { opacity: 0.4; filter: drop-shadow(0 0 2px rgba(255,215,0,0.5)); } 100% { opacity: 0.9; filter: drop-shadow(0 0 8px rgba(255,215,0,0.9)); } }
+
+@media(max-width:800px){.shell{padding:16px}.stats{grid-template-columns:repeat(2,1fr)}.columns{grid-template-columns:1fr}.heading h1{font-size:25px}.class-tank{height:300px}}@media(max-width:480px){.top{align-items:flex-start}.top-right{flex-direction:column;align-items:flex-end}.stats{gap:8px}.stat{padding:13px}.class-tank{height:280px}.fish-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="top"><div class="brand"><div class="logo">🐟</div> finclass</div><div class="top-right"><span class="muted" id="whoami" style="font-size:11px"></span><button class="btn alt hidden" id="logoutBtn">Sign out</button></div></header>
+
+<section id="loginScreen" class="login">
+ <div class="card">
+  <div class="eyebrow">YOUR CLASSROOM AQUARIUM</div><h1>Welcome to FinClass 🐠</h1>
+  <p class="muted" style="font-size:13px;line-height:1.6">Sign in with the email and password provided for your account.</p>
+  <form id="loginForm">
+   <div class="field"><label>EMAIL ADDRESS</label><input id="loginEmail" type="email" autocomplete="username" required placeholder="you@example.com"></div>
+   <div class="field"><label>PASSWORD</label><input id="loginPassword" type="password" autocomplete="current-password" required placeholder="Your password"></div>
+   <button class="btn" id="loginBtn" style="width:100%">Sign in →</button>
+  </form>
+  <div class="error" id="loginError" role="alert"></div>
+  <button class="back-link" id="forgotBtn" style="background:none;color:var(--teal);font-size:11px;font-weight:700;padding:6px 0">Forgot password?</button>
+  <div class="notice" style="margin-top:12px">Student accounts are created by your teacher. If you need access, contact your teacher.</div>
+  <div class="error" id="configError"></div>
+ </div>
+</section>
+
+<section id="teacherView" class="hidden">
+ <div class="heading"><div class="eyebrow">TEACHER WORKSPACE</div><h1>Classroom overview</h1><p>Manage your roster, award progress, and watch your class aquarium grow.</p></div>
+ <div class="stats"><div class="stat"><small>Students</small><strong id="countStudents">0</strong></div><div class="stat"><small>Total XP awarded</small><strong id="totalXP">0</strong></div><div class="stat"><small>Class updates</small><strong id="countUpdates">0</strong></div><div class="stat"><small>Average level</small><strong id="avgLevel">1.0</strong></div></div>
+ <div class="columns">
+  <div class="card"><div class="student-meta"><h3>Student roster</h3><button class="btn" id="addStudentBtn">＋ Add student</button></div><div class="table-wrap"><table><thead><tr><th>Student</th><th>Fish / level</th><th>XP</th><th></th></tr></thead><tbody id="roster"></tbody></table></div><div id="rosterEmpty" class="empty">No students yet. Add your first student.</div><p class="notice">Students can view classmates' fish and public achievements. Student records are not editable from the student portal.</p></div>
+  <div class="card"><h3>Award student progress</h3><div class="field"><label>STUDENT</label><select id="awardStudent"></select></div><div class="field"><label>ACHIEVEMENT</label><select id="awardXP"><option value="20">Submitted assignment · +20 XP</option><option value="10">Participated in class · +10 XP</option><option value="30">Scored 90% or higher · +30 XP</option><option value="15">Helped a classmate · +15 XP</option><option value="5">Showed improvement · +5 XP</option><option value="custom">Custom points</option></select></div><div class="field hidden" id="customWrap"><label>CUSTOM XP (1–100)</label><input id="customXP" type="number" min="1" max="100" value="10"></div><div class="field"><label>NOTE (OPTIONAL)</label><input id="awardNote" maxlength="140" placeholder="e.g. Excellent explanation today"></div><button class="btn" id="awardBtn">Award points ✨</button></div>
+ </div>
+ <div class="columns" style="margin-top:15px"><div class="card"><div class="student-meta"><h3>Class updates</h3><button class="btn alt" id="postUpdateBtn">＋ Post update</button></div><div id="teacherUpdates"></div></div><div class="card"><h3>Live class aquarium</h3><div class="class-tank" id="teacherTank"><div class="tank-plant p1">🌿</div><div class="tank-plant p2">🪸</div><div class="tank-rock">🪨</div><div class="tank-sand"></div></div></div></div>
+</section>
+
+<section id="studentView" class="hidden">
+ <div class="heading"><div class="eyebrow">YOUR FINCLASS SPACE</div><h1 id="studentGreeting">Hello!</h1><p id="classSubtitle">Your learning journey, one achievement at a time.</p></div>
+ <div class="student-tabs"><button class="active" data-pane="myFishPane">🐠 My Fish</button><button data-pane="classPane">🌊 Class Aquarium</button><button data-pane="updatesPane">📣 Class Updates</button></div>
+ <div class="pane active" id="myFishPane"><div class="columns"><div class="feed"><div class="student-meta"><span class="tag" id="studentLevel">LEVEL 1</span><span class="tag" id="studentEmail"></span></div><div class="fish-stage"><span class="seaweed left">🌿</span><span class="seaweed right">🪸</span><div class="sand"></div><div class="solo-fish" id="studentFish"></div></div><div class="progress-label"><span>Growth to next level</span><b id="progressText">0 / 100 XP</b></div><div class="bar"><span id="progressBar" style="width:0%"></span></div><p class="notice" style="margin-top:12px">Your fish grows and evolves into powerful aquatic forms as your teacher awards points for your effort!</p></div><div class="card"><h3>Your progress</h3><div class="stat"><small>Total experience points</small><strong id="profileXP">0 XP</strong></div><div class="stat" style="margin-top:10px"><small>Current level</small><strong id="profileLevel">Level 1</strong></div><h3 style="margin-top:18px">Recent achievements</h3><div id="studentHistory"></div></div></div></div>
+ <div class="pane" id="classPane"><div class="aquarium-hero"><div class="student-meta"><div><div class="eyebrow">THE WHOLE CLASS</div><h2 id="tankTitle" style="font:800 18px Manrope;margin:4px 0">Class Aquarium</h2></div><span class="tag" id="tankCount">0 fish</span></div><p style="font-size:12px;color:#4c7b7d">Everyone's fish lives here. Tap any fish to see its level and recent milestones.</p><div class="class-tank" id="studentTank"><div class="tank-plant p1">🌿</div><div class="tank-plant p2">🪸</div><div class="tank-rock">🪨</div><div class="tank-sand"></div></div><div class="muted" style="font-size:10px;margin-top:9px">🫧 Fish grow & evolve as students earn XP · 🐚 Teacher-managed progress</div></div><div class="card" style="margin-top:14px"><h3>Meet your classmates</h3><div class="fish-grid" id="fishGrid"></div></div></div>
+ <div class="pane" id="updatesPane"><div class="card"><h3>Updates from your teacher</h3><div id="studentUpdates"></div></div></div>
+</section>
+</div>
+
+<div class="modalbg" id="modalBg"><div class="modal"><h2 id="modalTitle">FinClass</h2><p id="modalDesc"></p><div id="modalFields"></div><div class="modalfoot"><button class="btn alt" id="cancelModal">Cancel</button><button class="btn" id="saveModal">Save</button></div></div></div><div class="toast" id="toast"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+import { getFirestore, collection, doc, onSnapshot, query, orderBy, addDoc, setDoc, updateDoc, deleteDoc, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+
+/* Replace this object with Firebase Console > Project settings > Your apps > SDK setup and configuration. */
+const firebaseConfig = {
+  apiKey: "AIzaSyBHFtrsfXw53SeJGivaLssYpgZcoWaf3QI",
+  authDomain: "finclass-839ee.firebaseapp.com",
+  projectId: "finclass-839ee",
+  storageBucket: "finclass-839ee.firebasestorage.app",
+  messagingSenderId: "133006565502",
+  appId: "1:133006565502:web:787bca5bfbd39c4475f82f"
+};
+
+const CLASS_ID = "grade12-section-a";
+
+const $ = id => document.getElementById(id);
+const safe = s => String(s ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const level = xp => Math.floor((xp||0)/100)+1;
+const progress = xp => (xp||0)%100;
+
+// Dynamic SVG Fish Evolution Generator
+function renderFishSVG(lv) {
+  if (lv <= 2) {
+    // Stage 1: Guppy (Level 1 - 2)
+    return `
+      <svg class="custom-fish-svg" viewBox="0 0 100 60">
+        <path class="tail" d="M 65 30 L 90 15 Q 82 30 90 45 Z" fill="#ff7675" />
+        <ellipse cx="45" cy="30" rx="22" ry="14" fill="#ff9ff3" />
+        <path class="fin-left" d="M 40 33 C 35 43, 48 43, 45 33 Z" fill="#ff7675" />
+        <circle cx="32" cy="26" r="3" fill="#2d3436" />
+        <circle cx="31" cy="25" r="1" fill="#ffffff" />
+      </svg>`;
+  } else if (lv <= 4) {
+    // Stage 2: Neon Tetra (Level 3 - 4)
+    return `
+      <svg class="custom-fish-svg" viewBox="0 0 100 60">
+        <path class="tail" d="M 65 30 L 92 10 C 80 30 80 30 92 50 Z" fill="#48dbfb" />
+        <path d="M 20 30 Q 45 10 68 30 Q 45 50 20 30 Z" fill="#00d2d3" />
+        <path d="M 23 30 Q 45 18 64 28 Z" stroke="#54a0ff" stroke-width="4" fill="none" />
+        <path class="fin-left" d="M 42 34 Q 32 46 48 40 Z" fill="#48dbfb" />
+        <circle cx="30" cy="25" r="3.5" fill="#1e272e" />
+        <circle cx="29" cy="24" r="1.2" fill="#ffffff" />
+      </svg>`;
+  } else if (lv <= 6) {
+    // Stage 3: Majestic Angelfish (Level 5 - 6)
+    return `
+      <svg class="custom-fish-svg" viewBox="0 0 100 60">
+        <path class="tail" d="M 65 30 L 95 8 Q 80 30 95 52 Z" fill="#feca57" />
+        <path d="M 45 3 C 55 15, 60 20, 68 30 C 60 40, 55 45, 45 57 C 35 45, 20 35, 20 30 C 20 25, 35 15, 45 3 Z" fill="#ff9f43" />
+        <path d="M 33 16 L 38 44" stroke="#54a0ff" stroke-width="3" stroke-linecap="round" />
+        <path d="M 47 10 L 52 50" stroke="#54a0ff" stroke-width="3" stroke-linecap="round" />
+        <path class="fin-left" d="M 40 33 Q 22 55 46 38 Z" fill="#feca57" />
+        <circle cx="28" cy="27" r="3.5" fill="#2d3436" />
+        <circle cx="27" cy="26" r="1.2" fill="#ffffff" />
+      </svg>`;
+  } else {
+    // Stage 4: Mythical Dragon Leviathan (Level 7+)
+    return `
+      <svg class="custom-fish-svg" viewBox="0 0 100 60">
+        <path class="glow" d="M 15 30 Q 45 0 80 30 Q 45 60 15 30 Z" fill="none" stroke="#5f27cd" stroke-width="6" />
+        <path class="tail" d="M 65 30 L 98 2 Q 82 30 98 58 Q 78 30 65 30 Z" fill="#ff9ff3" />
+        <path d="M 15 30 Q 45 5 70 30 Q 45 55 15 30 Z" fill="#341f97" />
+        <path d="M 30 14 Q 45 30 65 18" stroke="#ff9ff3" stroke-width="2.5" fill="none" />
+        <path class="fin-left" d="M 40 32 Q 18 58 52 38 Z" fill="#54a0ff" />
+        <polygon points="12,28 2,22 10,32" fill="#ff4757" />
+        <circle cx="26" cy="25" r="4" fill="#ff4757" />
+        <circle cx="25" cy="24" r="1.5" fill="#ffff54" />
+      </svg>`;
+  }
+}
+
+function getFishName(lv) {
+  if(lv <= 2) return "Guppy";
+  if(lv <= 4) return "Neon Tetra";
+  if(lv <= 6) return "Angelfish";
+  return "Leviathan";
+}
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+let currentUser=null, claims=null, profile=null, students=[], updates=[], history=[];
+let unsubscribers=[];
+let modalAction=null;
+
+function isTeacher(){return claims?.role==="teacher" && claims?.classId===CLASS_ID;}
+function toast(message){$("toast").textContent=message;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2600)}
+function showOnly(id){["loginScreen","teacherView","studentView"].forEach(x=>$(x).classList.toggle("hidden",x!==id));}
+function setBusy(button,busy,label){button.disabled=busy;if(busy){button.dataset.old=button.textContent;button.textContent=label||"Please wait…"}else{button.textContent=button.dataset.old||button.textContent}}
+function stopListeners(){unsubscribers.forEach(fn=>fn());unsubscribers=[]}
+function explainError(e){
+ const code=e?.code||"";
+ const map={
+  "auth/invalid-credential":"Email or password is incorrect.",
+  "auth/user-not-found":"No account was found for that email.",
+  "auth/wrong-password":"Email or password is incorrect.",
+  "auth/too-many-requests":"Too many attempts. Please wait and try again.",
+ };
+ return map[code]||e?.message||"Something went wrong. Please try again.";
+}
+
+$("loginForm").addEventListener("submit",async e=>{
+ e.preventDefault();$("loginError").textContent="";
+ const btn=$("loginBtn");setBusy(btn,true,"Signing in…");
+ try{await signInWithEmailAndPassword(auth,$("loginEmail").value.trim(),$("loginPassword").value)}
+ catch(err){$("loginError").textContent=explainError(err)}
+ finally{setBusy(btn,false)}
+});
+$("forgotBtn").onclick=async()=>{
+ const email=$("loginEmail").value.trim();
+ if(!email){$("loginError").textContent="Enter your email address first.";return}
+ try{await sendPasswordResetEmail(auth,email);toast("If the account exists, a password-reset email has been sent.")}
+ catch(e){$("loginError").textContent=explainError(e)}
+};
+$("logoutBtn").onclick=()=>signOut(auth);
+onAuthStateChanged(auth,async user=>{
+ stopListeners();currentUser=user;claims=null;profile=null;students=[];updates=[];history=[];
+ $("logoutBtn").classList.toggle("hidden",!user);
+ if(!user){$("whoami").textContent="";showOnly("loginScreen");return}
+ $("whoami").textContent=user.email||"Signed in";
+ try{
+  const token=await user.getIdTokenResult(true);claims=token.claims;
+  if(!["teacher","student"].includes(claims.role)||claims.classId!==CLASS_ID){await signOut(auth);$("loginError").textContent="This account has not been assigned the correct FinClass role or class. Contact your teacher.";return}
+  if(claims.role==="teacher")showOnly("teacherView");else showOnly("studentView");
+  subscribeClass();
+ }catch(e){showOnly("loginScreen");$("loginError").textContent=explainError(e)}
+});
+
+function subscribeClass(){
+ const base=`classes/${claims.classId}`;
+ unsubscribers.push(onSnapshot(doc(db,base),snap=>{
+  const d=snap.data()||{};profile=d;
+  $("classSubtitle").textContent=`Welcome to ${d.className||"your classroom"}. Your learning journey, one achievement at a time.`;
+  $("tankTitle").textContent=d.className||"Class Aquarium";
+  renderAll();
+ },err=>toast("Class data: "+explainError(err))));
+ unsubscribers.push(onSnapshot(query(collection(db,base,"students"),orderBy("name")),snap=>{
+  students=snap.docs.map(x=>({id:x.id,...x.data()}));renderAll();
+ },err=>toast("Student list: "+explainError(err))));
+ unsubscribers.push(onSnapshot(query(collection(db,base,"announcements"),orderBy("createdAt","desc")),snap=>{
+  updates=snap.docs.map(x=>({id:x.id,...x.data()}));renderAll();
+ },err=>toast("Announcements: "+explainError(err))));
+ unsubscribers.push(onSnapshot(query(collection(db,base,"activityHistory"),orderBy("createdAt","desc")),snap=>{
+  history=snap.docs.map(x=>({id:x.id,...x.data()}));renderAll();
+ },err=>toast("Activity history: "+explainError(err))));
+}
+
+function renderAll(){
+ if(claims?.role==="teacher")renderTeacher();
+ if(claims?.role==="student")renderStudent();
+}
+function renderTeacher(){
+ $("countStudents").textContent=students.length;
+ $("totalXP").textContent=students.reduce((n,s)=>n+(s.xp||0),0);
+ $("countUpdates").textContent=updates.length;
+ $("avgLevel").textContent=students.length?(students.reduce((n,s)=>n+level(s.xp),0)/students.length).toFixed(1):"1.0";
+ $("roster").innerHTML=students.map(s=>`<tr><td><div class="student"><span class="avatar">${safe(s.avatar||"🧑🏻‍🎓")}</span>${safe(s.name)}</div></td><td>${getFishName(level(s.xp))} · Lv ${level(s.xp)}</td><td><b>${s.xp||0}</b></td><td><button class="btn danger removeStudent" data-id="${safe(s.id)}" style="padding:6px 8px;font-size:10px">Remove</button></td></tr>`).join("");
+ $("rosterEmpty").classList.toggle("hidden",students.length>0);
+ $("awardStudent").innerHTML=students.map(s=>`<option value="${safe(s.id)}">${safe(s.name)}</option>`).join("")||'<option value="">Add students first</option>';
+ $("awardBtn").disabled=!students.length;
+ $("teacherUpdates").innerHTML=updates.map(u=>`<div class="update"><b>${safe(u.title)}</b><p>${safe(u.message)}</p><small>${formatDate(u.createdAt)}</small></div>`).join("")||'<div class="empty">No updates posted yet.</div>';
+ drawTank($("teacherTank"));
+ document.querySelectorAll(".removeStudent").forEach(b=>b.onclick=()=>removeStudent(b.dataset.id));
+}
+function renderStudent(){
+ const me=students.find(s=>s.id===currentUser.uid);
+ if(!me){$("studentGreeting").textContent="Your account is being set up";return}
+ const lv=level(me.xp),pct=progress(me.xp);
+ $("studentGreeting").textContent=`Hello, ${me.name}! ${me.avatar||"🐠"}`;
+ $("studentLevel").textContent="LEVEL "+lv;$("studentEmail").textContent=currentUser.email||"";
+ 
+ // Inject dynamic SVG into stage
+ $("studentFish").innerHTML=renderFishSVG(lv);
+ const scaleFactor = Math.min(1.6, 1 + (lv * 0.06));
+ $("studentFish").style.transform = `translate(-50%, -50%) scale(${scaleFactor})`;
+
+ $("profileXP").textContent=(me.xp||0)+" XP";$("profileLevel").textContent="Level "+lv;
+ $("progressText").textContent=pct+" / 100 XP";$("progressBar").style.width=pct+"%";
+ const ownHistory=history.filter(h=>h.studentId===currentUser.uid).slice(0,8);
+ $("studentHistory").innerHTML=ownHistory.map(h=>`<div class="update"><b>+${h.xp} XP · ${safe(h.reason)}</b><p>${formatDate(h.createdAt)}</p></div>`).join("")||'<div class="empty">Your achievements will appear here.</div>';
+ $("studentUpdates").innerHTML=updates.map(u=>`<div class="update"><b>${safe(u.title)}</b><p>${safe(u.message)}</p><small>${formatDate(u.createdAt)} · From your teacher</small></div>`).join("")||'<div class="empty">No teacher updates yet.</div>';
+ $("tankCount").textContent=`${students.length} fish`;
+}
+function formatDate(v){if(!v)return "Just now";const d=v.toDate?v.toDate():new Date(v);return d.toLocaleString()}
+
+function drawTank(el){
+ el.querySelectorAll(".swimmer").forEach(n=>n.remove());
+ const positions=[[12,17],[38,14],[66,20],[20,53],[51,49],[78,55],[35,73],[65,75],[8,38],[85,35],[48,30],[25,78],[75,12],[56,62]];
+ students.forEach((s,i)=>{
+   const p=positions[i%positions.length], node=document.createElement("button");
+   const lv = level(s.xp);
+   node.className="swimmer";
+   node.style.left=p[0]+"%";
+   node.style.top=p[1]+"%";
+   node.style.animationDelay=`-${(i%6)*.7}s`;
+   node.innerHTML=`<div class="fish-svg-wrapper">${renderFishSVG(lv)}</div><span class="name">${safe(s.name)}</span><span class="level">LEVEL ${lv}</span>`;
+   node.onclick=()=>showFish(s.id);
+   el.appendChild(node);
+ });
+
+ $("fishGrid").innerHTML=students.map(s=>{
+   const lv = level(s.xp);
+   return `<button class="fish-card" data-id="${safe(s.id)}"><div class="fish-svg-wrapper">${renderFishSVG(lv)}</div><b>${safe(s.name)}</b><small>Level ${lv} (${getFishName(lv)}) · ${s.xp||0} XP</small></button>`;
+ }).join("")||'<div class="empty">Your teacher has not added classmates yet.</div>';
+ 
+ document.querySelectorAll(".fish-card").forEach(b=>b.onclick=()=>showFish(b.dataset.id));
+}
+
+function openModal(title,desc,fields,action,saveLabel="Save"){
+ $("modalTitle").textContent=title;$("modalDesc").textContent=desc;$("modalFields").innerHTML=fields;modalAction=action;
+ $("saveModal").textContent=saveLabel;$("cancelModal").classList.remove("hidden");$("modalBg").classList.add("show");
+}
+function closeModal(){$("modalBg").classList.remove("show");modalAction=null;$("saveModal").textContent="Save";$("cancelModal").classList.remove("hidden")}
+$("cancelModal").onclick=closeModal;
+$("saveModal").onclick=async()=>{if(!modalAction)return;const btn=$("saveModal");setBusy(btn,true,"Working…");try{await modalAction();closeModal()}catch(e){toast(explainError(e))}finally{setBusy(btn,false)}};
+
+$("addStudentBtn").onclick=()=>openModal("Add a student profile","First create the student's Authentication account in Firebase Console and assign their student role using the included trusted script. Then add their classroom profile here.",`
+ <div class="field"><label>STUDENT AUTH UID</label><input id="newUid" maxlength="128" required placeholder="Firebase Authentication user UID"></div>
+ <div class="field"><label>STUDENT NAME</label><input id="newName" maxlength="60" required placeholder="Student full name"></div>
+ <div class="field"><label>FISH AVATAR</label><select id="newAvatar"><option>🧑🏻‍🎓</option><option>👩🏻‍🎓</option><option>👨🏻‍🎓</option><option>🧑🏽‍🎓</option><option>🐸</option><option>🐼</option></select></div>
+ <div class="notice">Create the login account first in Firebase Authentication → Users → Add user. Copy its UID, then assign the student role with scripts/set-student-role.cjs.</div>`,async()=>{
+ const uid=$("newUid").value.trim(),name=$("newName").value.trim(),avatar=$("newAvatar").value;
+ if(!uid||!name)throw new Error("Enter the student's Auth UID and name.");
+ await setDoc(doc(db,`classes/${claims.classId}/students/${uid}`),{name,avatar,xp:0,createdAt:serverTimestamp()});
+ toast("Student profile added to the classroom.");
+});
+$("awardXP").onchange=()=>$("customWrap").classList.toggle("hidden",$("awardXP").value!=="custom");
+$("awardBtn").onclick=async()=>{
+ const studentId=$("awardStudent").value;if(!studentId){toast("Add a student first.");return}
+ const xp=$("awardXP").value==="custom"?Number($("customXP").value):Number($("awardXP").value);
+ if(!Number.isInteger(xp)||xp<1||xp>100){toast("Custom XP must be between 1 and 100.");return}
+ const reason=$("awardNote").value.trim()||$("awardXP").selectedOptions[0].textContent.split(" · ")[0];
+ try{
+  if(!isTeacher())throw new Error("Only the assigned teacher can award XP.");
+  const studentRef=doc(db,`classes/${claims.classId}/students/${studentId}`);
+  const historyRef=doc(collection(db,`classes/${claims.classId}/activityHistory`));
+  await runTransaction(db,async tx=>{
+    const snap=await tx.get(studentRef);if(!snap.exists())throw new Error("Student profile not found.");
+    const current=Number(snap.data().xp||0);
+    tx.update(studentRef,{xp:current+xp});
+    tx.set(historyRef,{studentId,xp,reason,createdAt:serverTimestamp(),awardedBy:currentUser.uid});
+  });
+  $("awardNote").value="";toast(`Awarded ${xp} XP.`);
+ }catch(e){toast(explainError(e))}
+};
+$("postUpdateBtn").onclick=()=>openModal("Post a class update","This announcement will be visible to everyone in your class.",`
+ <div class="field"><label>UPDATE TITLE</label><input id="updateTitle" maxlength="90" placeholder="e.g. Great work this week!"></div>
+ <div class="field"><label>MESSAGE</label><textarea id="updateMessage" maxlength="1000" placeholder="Write your message…"></textarea></div>`,async()=>{
+ const title=$("updateTitle").value.trim(),message=$("updateMessage").value.trim();if(!title||!message)throw new Error("Enter both a title and message.");
+ if(!isTeacher())throw new Error("Only the assigned teacher can post updates.");
+ await addDoc(collection(db,`classes/${claims.classId}/announcements`),{title,message,createdAt:serverTimestamp(),authorId:currentUser.uid});
+ toast("Class update posted.");
+});
+async function removeStudent(studentId){
+ const s=students.find(x=>x.id===studentId);if(!s||!confirm(`Remove ${s.name}'s account and class progress? This cannot be undone.`))return;
+ try{
+  if(!isTeacher())throw new Error("Only the assigned teacher can remove student profiles.");
+  await deleteDoc(doc(db,`classes/${claims.classId}/students/${studentId}`));
+  toast("Student profile removed. Delete the Authentication account separately in Firebase Console if appropriate.");
+ }catch(e){toast(explainError(e))}
+}
+function showFish(id){
+ const s=students.find(x=>x.id===id);if(!s)return;
+ const own=s.id===currentUser.uid,items=history.filter(h=>h.studentId===id).slice(0,4);
+ const lv = level(s.xp);
+ openModal(`${safe(s.name)} ${safe(s.avatar||"🐠")}`,own?"This is your fish in the class aquarium.":"A classmate in your aquarium.",`
+ <div style="text-align:center;padding:10px"><div style="width:110px;height:80px;margin:0 auto">${renderFishSVG(lv)}</div><div class="tag">LEVEL ${lv} · ${getFishName(lv)}</div><h3 style="margin:12px 0 4px">${s.xp||0} XP</h3><p>${own?"Your learning progress":"Class aquarium profile"}</p></div>
+ <div class="notice">${own?"Your fish grows and transforms when your teacher awards you XP.":"Keep encouraging one another! Student progress is managed by your teacher."}</div>
+ <h4 style="font-size:12px;margin:15px 0 5px">Recent milestones</h4>${items.map(h=>`<div class="update"><b>+${h.xp} XP · ${safe(h.reason)}</b><p>${formatDate(h.createdAt)}</p></div>`).join("")||'<div class="empty">No milestones to show yet.</div>'}`,async()=>{},"Close");
+ $("cancelModal").classList.add("hidden");
+}
+document.querySelectorAll(".student-tabs button").forEach(b=>b.onclick=()=>{
+ document.querySelectorAll(".student-tabs button").forEach(x=>x.classList.toggle("active",x===b));
+ document.querySelectorAll(".pane").forEach(x=>x.classList.toggle("active",x.id===b.dataset.pane));
+ if(b.dataset.pane==="classPane")drawTank($("studentTank"));
+});
+
+if(firebaseConfig.apiKey.startsWith("REPLACE_")||firebaseConfig.projectId.startsWith("REPLACE_")){
+ $("configError").textContent="Setup needed: replace the Firebase configuration placeholders in index.html before running this site.";
+}
+</script>
+</body></html>
