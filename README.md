@@ -1,6 +1,7 @@
 [![OpenRepos](https://img.shields.io/endpoint?url=https://openrepos.org/status/finclass.openrepos.io.json&style=flat-square)](https://finclass.openrepos.io/)
 
-# FinClass — Firebase Spark + GitHub Pages
+# FinClass — Firebase Spark + GitHub Pages 
+## Disclaimer: This is created by CHATGPT. 
 
 This version does not use Cloud Functions. GitHub Pages hosts the static website; Firebase Authentication and Cloud Firestore provide login and shared classroom data.
 
