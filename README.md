@@ -1,3 +1,5 @@
+[![OpenRepos](https://img.shields.io/endpoint?url=https://openrepos.org/status/awesome-project.openrepos.org.json&style=flat-square)](https://awesome-project.openrepos.org/)
+
 # FinClass — Firebase Spark + GitHub Pages
 
 This version does not use Cloud Functions. GitHub Pages hosts the static website; Firebase Authentication and Cloud Firestore provide login and shared classroom data.
