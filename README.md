@@ -1,4 +1,4 @@
-[![OpenRepos](https://img.shields.io/endpoint?url=https://openrepos.org/status/awesome-project.openrepos.org.json&style=flat-square)](https://awesome-project.openrepos.org/)
+[![OpenRepos](https://img.shields.io/endpoint?url=https://openrepos.org/status/finclass.openrepos.io.json&style=flat-square)](https://finclass.openrepos.io/)
 
 # FinClass — Firebase Spark + GitHub Pages
 
